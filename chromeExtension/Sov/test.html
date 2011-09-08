@@ -1,0 +1,230 @@
+<!--
+  ~ Copyright 2011 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+  ~ Use of this source code is governed by a BSD-style
+  ~ license that can be found in the LICENSE file.
+  -->
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>Exchange</title>
+
+<style>
+    .thumb {
+        height: 75px;
+        border: 1px dashed #000;
+        margin: 10px 15px 0 0;
+    }
+</style>
+
+<script>
+
+    function clearDB() {
+        localStorage.clear();
+    }
+
+    function initDB() {
+    }
+
+    function dumpDB() {
+        for (var i = 0; i < localStorage.length; i++) {
+            document.getElementById('DBdump').innerHTML = localStorage.getItem(localStorage.key(i));
+        }
+    }
+
+</script>
+
+<h1>DB Storage</h1>
+
+<button id="clearDB" onclick="clearDB()">Clear DB</button>
+<button id="initDB" onclick="initDB()">Init DB</button>
+<button id="dumpDB" onclick="dumpDB()">Dump DB</button>
+
+<output id="storage" style="border: .1em hsla(222, 99%, 88%, .4) dashed;">default</output>
+<output id="DBdump" style="border: .1em hsla(44, 99%, 33%, .9) dashed; float: right; width: 22em; height: 22em;">
+    default
+</output>
+<textarea id="ta" placeholder="Start typing..."></textarea>
+
+<!--
+<h1>Test</h1>
+<div id="tripmeter">
+    <p>
+        Starting Location (lat, lon):<br/>
+        <span id="startLat">???</span>°, <span id="startLon">???</span>°
+    </p>
+
+    <p>
+        Current Location (lat, lon):<br/>
+        <span id="currentLat">???</span>°, <span id="currentLon">???</span>°
+    </p>
+
+    <p>
+        Distance from starting location:<br/>
+        <span id="distance">0</span> km
+    </p>
+</div>
+
+-->
+
+<script>
+    //var connection = new WebSocket('ws://html5rocks.websocket.org/echo');
+    // When the connection is open, send some data to the server
+    connection.onopen = function () {
+        connection.send('Ping'); // Send the message 'Ping' to the server
+    };
+
+    // Log errors
+    connection.onerror = function (error) {
+        console.log('WebSocket Error ' + error);
+    };
+
+    // Log messages from the server
+    connection.onmessage = function (e) {
+        console.log('Server: ' + e.data);
+    };
+
+    window.onload = function() {
+        var startPos;
+        navigator.geolocation.getCurrentPosition(function(position) {
+            startPos = position;
+            document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+            document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+        });
+    };
+
+    window.onload = function() {
+        var startPos;
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // same as above
+        }, function(error) {
+            alert('Error occurred. Error code: ' + error.code);
+            // error.code can be:
+            //   0: unknown error
+            //   1: permission denied
+            //   2: position unavailable (error response from locaton provider)
+            //   3: timed out
+        });
+    };
+
+    navigator.geolocation.watchPosition(function(position) {
+        document.getElementById('currentLat').innerHTML = position.coords.latitude;
+        document.getElementById('currentLon').innerHTML = position.coords.longitude;
+    });
+
+
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        var R = 6371; // km
+        var dLat = (lat2 - lat1).toRad();
+        var dLon = (lon2 - lon1).toRad();
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        return d;
+    }
+    Number.prototype.toRad = function() {
+        return this * Math.PI / 180;
+    }
+</script>
+
+<h1>File Operation</h1>
+
+
+<input type="file" id="files" name="files[]" multiple/>
+<output id="list"></output>
+
+
+<script>
+
+    function store() {
+        localStorage.setItem('epcDoc', JSON.stringify(epcDoc));
+        document.getElementById('storage').innerHTML = JSON.parse(localStorage.getItem('epcDoc')).teilId;
+    }
+
+    function handleFileSelect0r(eventContent) {
+        var files = eventContent.target.files; // FileList object
+
+        for (var fileNum = 0, file; file = files[fileNum]; fileNum++) {
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function(aFile) {
+                return function(param) {
+                    var span = document.createElement('span');
+                    span.innerHTML = ['<img class="thumb" src="', param.target.result,
+                        '" title="', aFile.name, '"/>'].join('');
+                    span.innerHTML = aFile.name;
+                    span.innerHTML = param.target.result;
+
+                    alert("done");
+                    document.getElementById('list').insertBefore(span, null);
+                };
+
+            })(file);
+
+            reader.readAsText(file);
+//            var fileContent = reader.readAsText(file);
+            var mob = file;
+//            alert(fileContent);
+//            reader.readAsText(file);
+//            reader.readAsArrayBuffer(file);
+        }
+    }
+
+
+    document.getElementById('files').addEventListener('change', handleFileSelect0r, false);
+</script>
+
+
+<script>
+    function demoMatchClick() {
+        var re = new RegExp(document.demoMatch.regex.value);
+        if (document.demoMatch.subject.value.match(re)) {
+            alert("Successful match");
+        } else {
+            alert("No match");
+        }
+    }
+
+    function demoShowMatchClick() {
+        var re = new RegExp(document.demoMatch.regex.value);
+        var m = re.exec(document.demoMatch.subject.value);
+        if (m == null) {
+            alert("No match");
+        } else {
+            var s = "Match at position " + m.index + ":\n";
+            for (i = 0; i < m.length; i++) {
+                s = s + m[i] + "\n";
+            }
+            alert(s);
+        }
+    }
+
+    function demoReplaceClick() {
+        var re = new RegExp(document.demoMatch.regex.value, "g");
+        document.demoMatch.result.value =
+                document.demoMatch.subject.value.replace(re,
+                        document.demoMatch.replacement.value);
+    }
+</script>
+
+<button onClick="store()">Store</button>
+
+<form ID="demoMatch" NAME="demoMatch" METHOD=POST ACTION="javascript:void(0)">
+    <P>Regexp: <INPUT TYPE=TEXT NAME="regex" VALUE="\bt[a-z]+\b" SIZE=50></P>
+
+    <P>Subject string: <INPUT TYPE=TEXT NAME="subject"
+                              VALUE="This is a test of the JavaScript RegExp object" SIZE=50></P>
+
+    <P><INPUT TYPE=SUBMIT VALUE="Test Match" ONCLICK="demoMatchClick()">
+        <INPUT TYPE=SUBMIT VALUE="Show Match" ONCLICK="demoShowMatchClick()"></P>
+
+    <P>Replacement text: <INPUT TYPE=TEXT NAME="replacement" VALUE="replaced" SIZE=50></P>
+
+    <p>Result: <INPUT TYPE=TEXT NAME="result"
+                      VALUE="click the button to see the result" SIZE=50></P>
+
+    <p><input type=SUBMIT VALUE="Replace" ONCLICK="demoReplaceClick()"></P>
+</form>
