@@ -8,8 +8,15 @@
     },
     "content_scripts": [
         {
-            "matches": ["http://news.google.com/*"],
+            "matches": ["http://news.google.com/"],
             "css": ["customization.css"]
+        }
+    ],
+    "content_scripts": [
+        {
+            "run_at": "document_end",
+            "matches": ["https://kunde.comdirect.de/*"],
+            "js":["customization.js"]
         }
     ]
 }
