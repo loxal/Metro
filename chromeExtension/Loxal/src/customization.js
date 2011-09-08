@@ -4,5 +4,17 @@
  * license that can be found in the LICENSE file.
  */
 
-document.getElementById("login").setAttribute("autocomplete", "on");
-
+switch (window.location.host) {
+    case "kunde.comdirect.de":
+        document.getElementById("login").setAttribute("autocomplete", "on");
+        break;
+    case "news.google.com":
+        break;
+    default:
+    {
+        window.stop();
+        document.getElementsByTagName("html")[0].style.display = "none";
+        document.title = "Move along, Sir!";
+        window.document.writeln("...waste of time!");
+    }
+}
