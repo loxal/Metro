@@ -10,7 +10,7 @@
     "content_scripts": [
         {
             "run_at": "document_end",
-            "matches": ["http://news.google.com/", "https://kunde.comdirect.de/*", "http://*.osnews.com/*"],
+            "matches": ["http://news.google.com/*", "https://kunde.comdirect.de/*", "http://*.osnews.com/*"],
             "css": ["customization.css"],
             "js": ["customization.js"]
         }
