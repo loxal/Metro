@@ -9,6 +9,10 @@ switch (window.location.host) {
         document.getElementById("login").setAttribute("autocomplete", "on");
         break;
     case "news.google.com":
+        var newsWithoutHeadlines = "http://news.google.com/?hdlOnly=1";
+        if (window.location.href != newsWithoutHeadlines) {
+            window.location = newsWithoutHeadlines;
+        }
         break;
     default:
     {
