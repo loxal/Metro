@@ -1,18 +1,26 @@
 {
-    "name": "Loxal Experience",
-    "version": "1.0.0",
-    "description": "Removes the \"Top Stories\" section from the Google News page; Auto-complete; Block OSnews.com;",
-    "icons": {
-        "48": "img/icon_48.png",
-        "128": "img/icon_128.png"
+    "name":"Loxal Experience",
+    "version":"1.0.0",
+    "description":"Removes the \"Top Stories\" section from the Google News page; Auto-complete; Block OSnews.com;",
+    "icons":{
+        "48":"img/icon_48.png",
+        "128":"img/icon_128.png"
     },
-    "background_page": "background.html",
-    "content_scripts": [
+    "background_page":"background.html",
+    "content_scripts":[
         {
-            "run_at": "document_end",
-            "matches": ["http://news.google.com/*", "https://kunde.comdirect.de/*", "http://*.osnews.com/*"],
-            "css": ["customization.css"],
-            "js": ["customization.js"]
+            "run_at":"document_end",
+            "matches":[
+                "http://news.google.com/*",
+                "https://kunde.comdirect.de/*",
+                "http://*.osnews.com/*",
+                "http://*.zdf.de/*",
+                "http://*.heute.de/*",
+                "http://*.sf.tv/*",
+                "http://video.foxnews.com/*"
+            ],
+            "css":["customization.css"],
+            "js":["customization.js"]
         }
     ]
 }
