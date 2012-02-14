@@ -4,6 +4,6 @@
  * license that can be found in the LICENSE file.
  */
 
-div#replaceable-section-headline.top-stories-section {
-    display: none;
+if (window.location.hostname.match(/news.google.*/i)) {
+    document.getElementById("replaceable-section-headline").style.display = 'none';
 }
