@@ -11,7 +11,7 @@
         {
             "run_at":"document_end",
             "matches":[
-                "http://news.google.com/*",
+                "https://news.google.com/*",
                 "https://kunde.comdirect.de/*",
                 "http://*.osnews.com/*"
 //                "http://*.zdf.de/*",

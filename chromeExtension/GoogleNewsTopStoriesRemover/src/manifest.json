@@ -1,6 +1,6 @@
 {
     "name":"\"Top Stories\" Section Remover",
-    "version":"1.0.1",
+    "version":"1.1.1",
     "description":"Removes the \"Top Stories\" section from the Google News page",
     "icons":{
         "48":"img/icon_48.png",
