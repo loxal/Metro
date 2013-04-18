@@ -1,11 +1,11 @@
 {
     "name": "Sovox",
     "version": "1.0.0.0",
+    "manifest_version": 2,
     "description": "An Interface for Solox",
-    "page_action" :
-    {
-        "default_icon" : "img/icon_16.png",
-        "default_title" : "There's a 'G' in this URL!"
+    "page_action": {
+        "default_icon": "img/icon_16.png",
+        "default_title": "There's a 'G' in this URL!"
     },
     "icons": {
         "16": "img/icon_16.png",
