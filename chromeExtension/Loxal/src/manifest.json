@@ -13,11 +13,11 @@
             "matches": [
                 "https://news.google.com/*",
                 "https://kunde.comdirect.de/*",
-                "http://*.osnews.com/*"
-//                "http://*.zdf.de/*",
-//                "http://*.heute.de/*",
-//                "http://*.sf.tv/*",
-//                "http://video.foxnews.com/*"
+                "http://*.osnews.com/*",
+                "http://*.zdf.de/*",
+                "http://*.heute.de/*",
+                "http://*.sf.tv/*",
+                "http://video.foxnews.com/*"
             ],
             "css": ["customization.css"],
             "js": ["customization.js"]

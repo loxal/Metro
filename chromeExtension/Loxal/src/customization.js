@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
+ * Copyright 2013 Alexander Orlov <alexander.orlov@loxal.net>. All rights reserved.
  * Use of this source code is governed by a BSD-style
  * license that can be found in the LICENSE file.
  */
@@ -9,9 +9,6 @@ switch (window.location.host) {
         document.getElementById("login").setAttribute("autocomplete", "on");
         break;
     case "news.google.com":
-//        if (window.location.getParameter("hdlOnly") == "") {
-//            window.location.search = "?hdlOnly=1";
-//        }
         break;
     default:
     {
