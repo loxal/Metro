@@ -18,7 +18,7 @@
     "background_page": "background.html",
 //    "browser_action": {
 //        "default_title": "Sov",
-//        "default_icon": "img/icon_48.png",
+  //        "default_icon": "img/icon-48.png",
 //        "popup": "popup.html"
 //    },
     "content_scripts": [
