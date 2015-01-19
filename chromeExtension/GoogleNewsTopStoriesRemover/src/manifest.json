@@ -6,7 +6,7 @@
   "icons": {
     "48": "img/icon-48.png",
     "128": "img/icon-128.png",
-    "32": "img/news-icon-32.png"
+    "32": "img/news-icon-32.ico"
   },
   "permissions": [
     "activeTab",
