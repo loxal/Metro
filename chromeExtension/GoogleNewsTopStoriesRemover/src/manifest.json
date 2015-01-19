@@ -1,17 +1,18 @@
 {
-    "name":"\"Top Stories\" Section Remover",
-    "version":"1.1.1",
-    "description":"Removes the \"Top Stories\" section from the Google News page",
-    "icons":{
-        "48":"img/icon_48.png",
-        "128":"img/icon_128.png"
-    },
-    "content_scripts":[
-        {
-            "matches":[
-                "*://*/*"
-            ],
-            "css":["customization.css"]
-        }
-    ]
+  "manifest_version": 2,
+  "name": "\"Top Stories\" Section Remover",
+  "version": "1.2.0",
+  "description": "Removes the \"Top Stories\" section from the Google News page",
+  "icons": {
+    "48": "img/icon_48.png",
+    "128": "img/icon_128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "css": ["customization.css"]
+    }
+  ]
 }
