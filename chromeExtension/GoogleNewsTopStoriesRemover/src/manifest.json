@@ -1,19 +1,14 @@
 {
   "manifest_version": 2,
   "name": "Google News’ “Top Stories” Section Remover",
-  "version": "1.2.5",
-  "description": "Removes the “Top Stories” section from the Google News page",
+  "version": "1.2.7",
+  "description": "Removes the “Top Stories” section from Google News’ page.",
   "icons": {
+    "32": "img/news-icon-32.ico",
     "48": "img/icon-48.png",
-    "128": "img/icon-128.png",
-    "32": "img/news-icon-32.ico"
+    "128": "img/icon-128.png"
   },
   "permissions": [
-    "activeTab",
-    "https://news.google.com/",
-    "https://news.google.com",
-    "http://news.google.com/",
-    "http://news.google.com"
   ],
   "content_scripts": [
     {
